@@ -7,8 +7,6 @@ import employeeController from "./controllers/employeeController";
 
 routes.post("/register/employee", employeeController.create);
 
-routes.get("/auth", (request, response) => {
-  response.json({ message: "Hello World! Auth" });
-});
+routes.post("/login/employee", employeeController.index);
 
 export default routes;

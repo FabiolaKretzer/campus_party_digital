@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export interface iUser {
-  id_user: number;
+  id_employee: number;
   name: string;
   email: string;
   password: string;
@@ -18,7 +18,7 @@ export async function VerifyAndSign(User: iUser, password: string) {
     if (!isPasswordCorrect) return false;
 
     const token = jwt.sign(
-      { User_id: User.id_user },
+      { User_id: User.id_employee },
       String(process.env.APP_SECRET),
       { expiresIn: "4h" }
     );

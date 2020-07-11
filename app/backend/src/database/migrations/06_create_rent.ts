@@ -13,7 +13,7 @@ export async function up(knex: Knex) {
       .notNullable()
       .references("id_contract")
       .inTable("contract");
-    table.timestamps().notNullable();
+    table.timestamps();
   });
 }
 
