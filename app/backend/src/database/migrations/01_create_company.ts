@@ -8,7 +8,7 @@ export async function up(knex: Knex) {
     table.integer("cnpj").notNullable();
     table.string("email").notNullable();
     table.string("password").notNullable();
-    table.string("whatsapp").notNullable();
+    table.integer("whatsapp").notNullable();
   });
 }
 

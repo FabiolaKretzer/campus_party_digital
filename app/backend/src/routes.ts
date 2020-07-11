@@ -2,9 +2,10 @@ import express from "express";
 
 const routes = express.Router();
 
-routes.get("/", (request, response) => {
-  response.json("Hello World!");
-});
+//controllers
+import employeeController from "./controllers/employeeController";
+
+routes.post("/register/employee", employeeController.create);
 
 routes.get("/auth", (request, response) => {
   response.json({ message: "Hello World! Auth" });

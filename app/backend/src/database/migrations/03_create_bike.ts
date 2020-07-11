@@ -3,7 +3,7 @@ import Knex from "knex";
 export async function up(knex: Knex) {
   return knex.schema.createTable("bike", (table) => {
     table.increments("id_bike").primary();
-    table.boolean("eletric").notNullable();
+    table.boolean("eletric").notNullable().defaultTo(false);
     table.string("code").unique().notNullable();
     table
       .integer("id_company")
