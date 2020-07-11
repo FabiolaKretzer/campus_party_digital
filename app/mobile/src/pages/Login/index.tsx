@@ -1,16 +1,34 @@
-import React from "react";
-import { Text, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Platform } from "react-native";
+import React, { useState } from "react";
+import { Text, AsyncStorage, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Platform, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
+import api from '../../services/api';
 
 export default function Login() {
   const navigation = useNavigation();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   function navigateToRegister() {
     navigation.navigate("Register");
   }
-  function navigateToHome() {
-    navigation.navigate("Auth");
+  
+  async function handleLogin() {
+    if(email != '' && password != '') {
+      const response = await api.post('/login', {
+        email,
+        password
+      });
+  
+      const { _id } = response.data;
+
+      if(_id) {
+        navigation.navigate('Home');
+      }
+    }
   }
+
   return (
     <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding">
       <Text>Login</Text>
@@ -23,16 +41,19 @@ export default function Login() {
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           placeholder="Senha"
           placeholderTextColor="#999"
           secureTextEntry={true}
-          autoCapitalize="words"
           autoCorrect={false}
+          value={password}
+          onChangeText={setPassword}
         />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleLogin}>
           <Text>Entrar</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={navigateToRegister}>
@@ -42,3 +63,7 @@ export default function Login() {
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+
+});
