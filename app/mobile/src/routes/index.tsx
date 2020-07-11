@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#DAE1E7" }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "#7A7A7A" }}>
           <AppStack.Navigator screenOptions={{ headerShown: false }}>
             <AppStack.Screen name="Open" component={Open} />
             <AppStack.Screen name="Auth" component={Auth} />
